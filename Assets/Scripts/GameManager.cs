@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour
     public int ghostMultiplier { get; private set; } = 1;
     public int score { get; private set; }
     public int lives { get; private set; }
+    public string sceneName;
 
     private void Start()
     {
@@ -18,12 +20,17 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (this.lives <= 0 && Input.anyKeyDown)
+       /* if (this.lives <= 0 && Input.anyKeyDown)
         {
             NewGame();
+        }*/
+       if(HasRemainingPellets() && (lives<=0))
+        {
+            Invoke(nameof(NewGame),2.0f);                // NEW GAME
+           // Invoke("NewGame", 2f);
         }
     }
-
+    
     private void NewGame()
     {
         SetScore(0);
@@ -32,9 +39,9 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private void NewRound()
+    private void NewRound()                                     
     {
-        foreach (Transform pellet in this.pellets)
+       foreach (Transform pellet in this.pellets)
         {
             pellet.gameObject.SetActive(true);
         }
@@ -101,28 +108,32 @@ public class GameManager : MonoBehaviour
         if (!HasRemainingPellets())
         {
             this.pacman.gameObject.SetActive(false);
-            Invoke(nameof(NewRound), 3.0f);
+           
+            Debug.Log("hi");
+            Debug.Log("sceneName to load: " +sceneName);
+            // Invoke(nameof(NewRound), 3.0f);
+            SceneManager.LoadScene(sceneName);  
         }
     }
 
     public void PowerPelletEaten(PowerPellet pellet)
     {
-        Debug.Log("pellet");
+        
         //To Do : Changing Ghost State
         for (int i = 0; i < this.ghosts.Length; i++)
         {
-            Debug.Log("pellet1");
+           
             //this.pacman.gameObject.SetActive(true);
             this.ghosts[i].frightened.Enable(pellet.duration);
         }
-        Debug.Log("pellet2");
+        
         
         PelletEaten(pellet);
-        Debug.Log("pellet3");
+        
         CancelInvoke();
-        Debug.Log("pellet4");
+        
         Invoke(nameof(ResetGhostMultiplier), pellet.duration);
-        Debug.Log("pellet5");
+        
     }
 
     private bool HasRemainingPellets()

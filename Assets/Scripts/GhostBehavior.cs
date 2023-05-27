@@ -18,12 +18,14 @@ public abstract class GhostBehavior : MonoBehaviour
 
     public void Enable()
     {
+        Debug.Log("GhostBehavior enabled");
         Enable(this.duration);
     }
 
 
     public virtual void Enable(float duration)
     {
+        Debug.Log("GhostBehavior virtual enabled");
         this.enabled = true;
 
         CancelInvoke();

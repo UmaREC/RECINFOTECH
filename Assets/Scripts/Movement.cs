@@ -53,13 +53,15 @@ public class Movement : MonoBehaviour
 
     public void SetDirection(Vector2 direction, bool forced = false)
     {
-        if (forced || !Occupied(direction))
+        if (forced || !Occupied(direction))   // if forced equals true
         {
+            Debug.Log("Set direction from Movement");
             this.direction = direction;
             this.nextDirection = Vector2.zero;
         }
         else
         {
+            Debug.Log(Occupied(direction));
             this.nextDirection = direction;
         }
     }
