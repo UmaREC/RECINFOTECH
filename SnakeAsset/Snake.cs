@@ -56,6 +56,7 @@ public class Snake : MonoBehaviour
     }
     private void ResetState()
     {
+    Debug.Log("ResetState");
         for (int i = 1; i < _segments.Count; i++)
         {
             Destroy(_segments[i].gameObject);
