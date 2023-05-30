@@ -88,6 +88,7 @@ public class GameManager : MonoBehaviour
 
     public void PacmanEaten()
     {
+    Debug.log("Pacman Eaten");
         this.pacman.gameObject.SetActive(false);
 
         SetLives(this.lives - 1);
