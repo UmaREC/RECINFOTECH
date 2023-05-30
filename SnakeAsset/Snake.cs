@@ -73,6 +73,7 @@ public class Snake : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+    Debug.Log("Collision");
         if (collision.tag == "Food")
         {
             Grow();
