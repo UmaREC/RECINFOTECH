@@ -48,6 +48,7 @@ public class Snake : MonoBehaviour
 
     private void Grow()
     {
+    Debug.Log("Grow");
        Transform segment =  Instantiate(this.segmentPrefab);
         segment.position = _segments[_segments.Count - 1].position;
         _segments.Add(segment);
