@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
 
     private void ResetState()
     {
+    Debug.Log("Reset state");
         ResetGhostMultiplier();
 
         for (int i = 0; i < this.ghosts.Length; i++)
