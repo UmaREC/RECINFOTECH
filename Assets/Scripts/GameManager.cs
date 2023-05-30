@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
         {
             Invoke(nameof(NewGame),2.0f);                // NEW GAME
            // Invoke("NewGame", 2f);
+           
         }
     }
     
@@ -152,7 +153,7 @@ public class GameManager : MonoBehaviour
     {
         this.ghostMultiplier = 1;
     }
-
+Debug.Log("This is game manager script");
 }
 
 
